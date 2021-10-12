@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>test：メンバー入力フォーム</title>
+
+        <!-- CSS -->
+        <style>
+            body{
+                background-color: #eee;
+                font-size: 30px;
+                background-image: url(bg_blue.png);
+                background-size: cover;
+            }
+            h3{
+                color:white;
+                margin: 15px 10px;
+            } 
+            span{
+                color:crimson;
+                font-size: 35px;
+            }
+            .description, .description2{
+                font-size: 18px;
+                color: cyan;
+                margin: 20px, 20px 20px 0px;
+            }
+            .contents, .outputs{
+                color:darkgoldenrod;
+                margin: 5px 10px;
+            }
+            .button_submit{
+                background-color:cyan;
+                color:darkblue;
+                width: 150px;
+                height: 40px;
+                margin-bottom: 20px;
+            }
+            .input_text{
+                margin-left: 10px;
+                width: 200px;
+                height: 35px;
+            }
+            .outputs{
+                float: left;
+            }
+            .output-message{
+                font-size: 10px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <h3>
+            メンバー入力フォーム<span>.</span>
+        </h3>
+        
+        <div class=" description">
+            名前を記入してください：
+        </div> 
+        
+        <div class="contents">
+            <input type="text" class="input_text" id="text_input">
+            <input type="button" class="button_submit" id="button1" value="送信">
+        </div> 
+
+        <div class=" description2">
+            名前一覧：
+        </div> 
+        
+        <div class="outputs">
+            <textarea cols="30" rows="6" id="output-message" 
+            style="text-align: left;" readonly></textarea>
+        </div> 
+    
+
+            <!-- js -->
+            <script>
+            
+
+            document.getElementById("button1").addEventListener("click",
+            function addText(){                 
+                // 変数の定義
+                var input_name = document.getElementById("text_input");
+                var output = document.getElementById("output-message");
+
+                // logメッセージの表示
+                console.log("Debug message is here.");
+
+                // 正しく入力されていない場合
+                if(input_name.value.match(/^\s*$/)){
+                    alert("Input your name!")
+                }
+                // 正しい入力の場合
+                else{
+                    var answer = window.confirm("Your name is " + input_name.value + " ?");
+                    // 入力OK
+                    if(answer){
+                    console.log("true: " + input_name.value);
+                    //alert("Name is sent!");
+
+                    //出力用のテキストエリアにメッセージを表示
+                    output.value += input_name.value + "\n";
+                    }
+                    // 入力キャンセル
+                    else{
+                    console.log("false: ");
+                    alert("Please enter name again!");
+                    }                
+                }
+             })
+            </script>
+    </body>
+</html>
